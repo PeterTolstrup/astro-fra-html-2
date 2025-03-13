@@ -1,0 +1,35 @@
+---
+import Button from "./Button.astro";
+const { name, role, description, mail, imageSrc } = Astro.props;
+---
+
+<article>
+  <img src=`${imageSrc}` alt=`Image og ${name}` />
+  <div class="container">
+    <h3>{name}</h3>
+    <p class="title">{role}</p>
+    <p>{description}</p>
+    <p>
+      <p><a href=`mailto:${mail}`>{mail}</a></p>
+      <p><Button text="Learn more" variant="dark" /></p>
+    </p>
+  </div>
+
+  <style>
+    article {
+      background-color: #fff;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .container {
+      padding: 0 1rem;
+    }
+
+    .title {
+      color: grey;
+    }
+  </style>
+</article>
