@@ -1,17 +1,17 @@
 ---
 import Button from "./Button.astro";
-const { name, role, description, mail, imageSrc } = Astro.props;
+const { name, role, description, mail, imageSrc, fired } = Astro.props;
 ---
 
-<article>
+<article class={fired && "fired"}>
   <img src=`${imageSrc}` alt=`Image og ${name}` />
   <div class="container">
     <h3>{name}</h3>
-    <p class="title">{role}</p>
+    {fired ? <p class="title">Fired</p> : <p class="title">{role}</p>}
     <p>{description}</p>
     <p>
-      <p><a href=`mailto:${mail}`>{mail}</a></p>
-      <p><Button text="Learn more" variant="dark" /></p>
+      <p>{!fired && <a href=`mailto:${mail}`>{mail}</a>}.</p>
+      <p><Button text={fired ? "Nothing to Learn" : "Learn more"} variant={fired ? "disabled" : "dark"} /></p>
     </p>
   </div>
 
@@ -30,6 +30,18 @@ const { name, role, description, mail, imageSrc } = Astro.props;
 
     .title {
       color: grey;
+    }
+
+    .fired {
+      color: #888;
+    }
+    .fired .title {
+      color: red;
+      font-style: italic;
+    }
+    .fired img {
+      filter: saturate(0%);
+      opacity: 0.5;
     }
   </style>
 </article>

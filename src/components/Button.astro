@@ -2,7 +2,7 @@
 const { text, variant } = Astro.props;
 ---
 
-<button class=`${variant}`>{text}</button>
+<button class={variant}>{text}</button>
 
 <style>
   button {
@@ -31,5 +31,10 @@ const { text, variant } = Astro.props;
 
   .light:hover {
     background-color: #b8b8b8;
+  }
+
+  .disabled {
+    color: white;
+    background-color: #b7b7b7;
   }
 </style>
